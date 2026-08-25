@@ -15,7 +15,8 @@
 # - Informa URL
 #
 # Define a pasta de destino desejada
-DIRETORIO_ALVO="/Users/paulonogueirasilva/Downloads"
+# DIRETORIO_ALVO="/Users/paulonogueirasilva/Downloads"
+DIRETORIO_ALVO="/Users/paulonogueirasilva/Movies"
 
 # Verifica se já está no diretório correto. Se não estiver, entra nele.
 if [ "$PWD" != "$DIRETORIO_ALVO" ]; then
