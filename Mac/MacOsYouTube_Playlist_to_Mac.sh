@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 #
-# MacOsYouTube_Playlist_to_Mac.sh
+# 20260825 - MacOsYouTube_Playlist_to_Mac.sh - Testado.
 #
 # [1. Terminal Mac]  ---> Conectar.
 #

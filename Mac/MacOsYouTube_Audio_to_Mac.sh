@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
 #
+# 20260825 - MacOsYouTube_Audio_to_Mac.sh - Testado.
+#
 # MacOsYouTube_Audio_to_Mac.sh
 #
 # [1. Terminal Mac]  ---> Conectar.
