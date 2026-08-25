@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+#
+# 20260825 - MacOsSystemAdm.sh - Testado e funcional.
+#
+
 # Cores
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'

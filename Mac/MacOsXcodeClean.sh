@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+#
+# 20260825 - MacOsXcodeClean.sh - Testado e funcional.
+#
+
 # Interrompe o script imediatamente se qualquer comando falhar
 set -e
 

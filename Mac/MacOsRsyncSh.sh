@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+#
+# 20260825 - MacOsRsyncSh.sh - Testado e funcional.
+#
+
 # Origem: Caminho absoluto da pasta do seu repositório local
 ORIGEM="$HOME/Documents/GitHub/Scripts/Mac/"
 

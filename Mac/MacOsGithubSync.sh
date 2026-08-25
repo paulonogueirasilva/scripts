@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+#
+# 20260825 - MacOsGithubSync.sh - Testado e funcional.
+#
+
 # Caminho da sua pasta de projetos
 BASE_DIR="$HOME/Documents/GitHub"
 

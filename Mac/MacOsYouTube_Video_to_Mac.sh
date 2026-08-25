@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 #
-# 20260825 - MacOsYouTube_Video_to_Mac.sh - Testado.
+# 20260825 - MacOsYouTube_Video_to_Mac.sh - Testado e funcional.
 #
 # [1. Terminal Mac]  ---> Conectar.
 #

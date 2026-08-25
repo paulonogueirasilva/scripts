@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
+
 #
-# 20260119
-# MacOsUpdate.sh
+# 20260825 - MacOsUpdate.sh - Testado e funcional.
 # Apple Maintenance
 #
 echo #

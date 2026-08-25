@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+#
+# 20260825 - MacOsJavaUpdate.sh - Testado e funcional.
+#
+
 # Versão atual instalada (extrai apenas o número principal)
 INSTALLED_VER=$(java -version 2>&1 | head -n 1 | awk -F '"' '{print $2}' | cut -d'.' -f1)
 

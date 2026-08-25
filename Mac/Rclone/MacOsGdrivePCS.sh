@@ -1,4 +1,9 @@
 #!/usr/bin/env zsh
+
+#
+# 20260825 - MacOsGdrivePCS.sh - Testado e funcional.
+#
+
 # ========================
 # CONFIGURAÇÃO DE CAMINHOS
 # ========================

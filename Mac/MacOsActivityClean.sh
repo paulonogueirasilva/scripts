@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+#
+# 20260825 - MacOsActivityClean.sh - Testado e funcional.
+#
+
 echo "--- Iniciando Faxina de Desenvolvimento (macOS Tahoe) ---"
 
 # Verifica se há scripts antigos rodando como root

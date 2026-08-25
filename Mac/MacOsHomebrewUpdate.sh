@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
+
 #
-# MacOsHomebrewUpdate.sh
+# 20260825 - MacOsHomebrewUpdate.sh - Testado e funcional.
 # Brew maintenance script
 #
 

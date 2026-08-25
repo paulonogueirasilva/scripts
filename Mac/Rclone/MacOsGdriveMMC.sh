@@ -1,4 +1,9 @@
 #!/usr/bin/env zsh
+
+#
+# 20260825 - MacOsGdriveMMC.sh - Testado e funcional.
+#
+
 # ========================
 # CONFIGURAÇÃO DE CAMINHOS
 # ========================
