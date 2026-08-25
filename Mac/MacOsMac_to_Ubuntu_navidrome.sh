@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 #
-# 20260825 - MacOsMac_to_Ubuntu_navidrome.sh
+# 20260825 - MacOsMac_to_Ubuntu_navidrome.sh - Testado e funcional.
 # Script para transferir músicas do macOS para o Navidrome no Ubuntu via Tailscale.
 #
 
