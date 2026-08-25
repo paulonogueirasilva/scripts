@@ -21,7 +21,7 @@ DIRETORIO_ALVO="/Users/paulonogueirasilva/Music"
 # Verifica se já está no diretório correto. Se não estiver, entra nele.
 if [ "$PWD" != "$DIRETORIO_ALVO" ]; then
     echo "Movendo para o diretório correto: $DIRETORIO_ALVO"
-    cd "$DIRETORIO_ALVO" || { echo "Erro ao acessar a pasta Downloads"; exit 1; }
+    cd "$DIRETORIO_ALVO" || { echo "Erro ao acessar a pasta!"; exit 1; }
 else
     echo "Você já está na pasta correta: $DIRETORIO_ALVO"
 fi
