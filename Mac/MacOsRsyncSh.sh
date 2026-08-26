@@ -21,11 +21,11 @@ STATUS_SYNC=$?
 if [ $STATUS_SYNC -eq 0 ]; then
   # O (N) garante que se não houver arquivos, o chmod não quebra o script
   sudo chmod 777 /usr/local/bin/*.sh(N)
-  echo "----------------------------------------------------------"
+  echo "------------------------------------------------------"
   echo " SINCRONIZAÇÃO CONCLUÍDA COM SUCESSO: MacOsRsyncSh.sh!"
-  echo "----------------------------------------------------------"
+  echo "------------------------------------------------------"
 else
-  echo "--------------------------------------------"
+  echo "----------------------------------------"
   echo " ERRO NA SINCRONIZAÇÃO: MacOsRsyncSh.sh!"
-  echo "--------------------------------------------"
+  echo "----------------------------------------"
 fi

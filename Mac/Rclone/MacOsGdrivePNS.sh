@@ -14,10 +14,10 @@ FILTER_FILE="/Users/paulonogueirasilva/Documents/GitHub/Scripts/Mac/Filters/Term
 # Diretórios de Controle e Log
 RCLONE_WORK_DIR="/Users/paulonogueirasilva/Documents/Rclone/Bisync"
 
-echo "--------------------------------------"
+echo "------------------------------------"
 echo " INICIANDO RCLONE BISYNC"
 echo " Paulo Nogueira Silva <--> Local Mac"
-echo "--------------------------------------"
+echo "------------------------------------"
 
 # 1. Evitar execuções sobrepostas (Crucial para o Bisync a cada 15 min)
 if pgrep -x "rclone" > /dev/null; then
