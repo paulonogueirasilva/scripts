@@ -5,25 +5,25 @@
 #
 # [1. Terminal Mac]  ---> Conectar.
 #
-# [2. Terminal Mac]  ---> Atualiza yt-dlp e move para Downloads:
+# [2. Terminal Mac]  ---> Atualiza yt-dlp e move para Movies:
 # pipx upgrade yt-dlp
 # pipx upgrade-all
-# cd /Users/paulonogueirasilva/Downloads/
+# cd /Users/paulonogueirasilva/Movies/
 #
-# [3. Script zsh]  ---> Baixa vídeos com yt-dlp para a pasta Downloads:
+# [3. Script zsh]  ---> Baixa vídeos com yt-dlp para o diretório Movies:
 # - MacOsYouTube_Video_to_Mac.sh
 # - Informa URL
 #
-# Define a pasta de destino desejada
+# Define o diretório de destino desejado
 # DIRETORIO_ALVO="/Users/paulonogueirasilva/Downloads"
 DIRETORIO_ALVO="/Users/paulonogueirasilva/Movies"
 
 # Verifica se já está no diretório correto. Se não estiver, entra nele.
 if [ "$PWD" != "$DIRETORIO_ALVO" ]; then
     echo "Movendo para o diretório correto: $DIRETORIO_ALVO"
-    cd "$DIRETORIO_ALVO" || { echo "Erro ao acessar a pasta!"; exit 1; }
+    cd "$DIRETORIO_ALVO" || { echo "Erro ao acessar o diretório: $DIRETORIO_ALVO"; exit 1; }
 else
-    echo "Você já está na pasta correta: $DIRETORIO_ALVO"
+    echo "Você já está no diretório correto: $DIRETORIO_ALVO"
 fi
 
 # Solicita a URL do vídeo do YouTube
