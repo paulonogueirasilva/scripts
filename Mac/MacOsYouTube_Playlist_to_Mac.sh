@@ -18,13 +18,6 @@
 # - Criar script,
 # - No momento é realizado manualmente (20260826).
 #
-# [5. Navidrome]  ---> Clica em "Quick Scan" no painel (ou aguarda o Auto-Scan):
-# - http://macmini6-2:4533/
-#
-# [6. Sincronização]  ---> Executa Substreamer no celular:
-# - Ativa VPN Tailscale,
-# - Abre Substreamer e sincroniza com o Navidrome do Ubuntu.
-#
 
 # Define o diretório de destino desejado
 # DIRETORIO_ALVO="/Users/paulonogueirasilva/Downloads"
