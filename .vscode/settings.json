@@ -1,0 +1,7 @@
+{
+    "git.branchProtectionPrompt": "alwaysPrompt",
+    "git.branchProtection": [
+        "main",
+        "master"
+    ]
+}
