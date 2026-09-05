@@ -67,11 +67,6 @@ rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" \
   --drive-import-formats docx,xlsx,pptx,svg,csv \
   -P -v
 
-#
-# Exibe a quantidade de espaço utilizado no Google Drive após a sincronização
-#
-rclone about "$REMOTE_DIR"
-
 STATUS_SYNC=$?
 
 if [ $STATUS_SYNC -eq 0 ]; then
@@ -84,6 +79,10 @@ else
   echo " ERRO NA SINCRONIZAÇÃO!"
   echo "------------------------"
 fi
+#
+# Exibe a quantidade de espaço utilizado no Google Drive após a sincronização
+#
+rclone about "$REMOTE_DIR"
 
 #
 #Parâmetros utilizados no rclone:
