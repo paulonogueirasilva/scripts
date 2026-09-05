@@ -36,7 +36,11 @@ if [ -t 0 ]; then
   fi
 fi
 
-# ========================================================================
+# ===========================================
+# LIMPEZA PRÉVIA DE ARQUIVOS OCULTOS DO MACOS
+# ===========================================
+find "$LOCAL_DIR" -name ".DS_Store" -type f -delete 2>/dev/null
+# =====================================================================
 # EXECUÇÃO DO COMANDO UNIFICADO
 #
 # --delete-during \: para deletar arquivos durante a sincronização
@@ -44,11 +48,10 @@ fi
 # --resync \: para a primeira sincronização ou possível resincronização
 # --resync-mode path1 \: para sincronizar a partir da pasta local
 # -P -v: para mostrar o progresso e detalhes da execução
-# ========================================================================
+# =====================================================================
 rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" \
   --workdir "$RCLONE_WORK_DIR" \
   --filter-from "$FILTER_FILE" \
-  --exclude ".DS_Store" \
   --compare size,modtime \
   --slow-hash-sync-only \
   --delete-during \
