@@ -48,6 +48,7 @@ fi
 rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" \
   --workdir "$RCLONE_WORK_DIR" \
   --filter-from "$FILTER_FILE" \
+  --exclude ".DS_Store" \
   --compare size,modtime \
   --slow-hash-sync-only \
   --delete-during \
