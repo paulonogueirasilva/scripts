@@ -53,3 +53,5 @@ yt-dlp -f 'ba[ext=m4a]' \
 --replace-in-metadata "playlist_uploader" " - Topic" "" \
 -o "%(album_artist)s - %(album)s/%(playlist_index)02d - %(title)s.%(ext)s" \
 "$URL_CORRIGIDA"
+
+echo -e "\nTransfira para o Ubuntu navidrome com MacOsMac_to_Ubuntu_navidrome(.sh)...\n$URL_CORRIGIDA\n"
