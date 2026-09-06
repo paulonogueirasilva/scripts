@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 #
-# 20260825 - MacOsActivityClean.sh - Testado e funcional.
+# 20260906 - MacOsActivityClean.sh - Testado e funcional.
 #
 
 echo "--- Iniciando Faxina de Desenvolvimento (macOS Tahoe) ---"
@@ -86,6 +86,15 @@ if [ -d "$WORKSPACE_DIR" ]; then
     # Limpeza segura do banco H2 (mv.db) com mais de 7 dias
     find "$WORKSPACE_DIR" -name "*.mv.db" -type f -atime +7 -delete 2>/dev/null
     find "$WORKSPACE_DIR" -name "*.trace.db" -type f -delete 2>/dev/null
+fi
+
+# --- Seção 8: Execução do Mole (Limpeza & Otimização Automática) ---
+if command -v mole &> /dev/null; then
+    echo "[+] Executando limpeza e otimização via Mole..."
+    mole clean --all --quiet 2>/dev/null
+    mole optimize --quiet 2>/dev/null
+else
+    echo "[!] Executável do Mole não foi encontrado no PATH."
 fi
 
 STATUS_FAXINA=$?
