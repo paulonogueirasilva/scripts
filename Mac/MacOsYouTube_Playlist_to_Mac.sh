@@ -14,10 +14,15 @@
 # - MacOsYouTube_Playlist_to_Mac.sh
 # - Informa URL
 #
-# [4. Kid3-qt Script zsh]  ---> Corrige o "NA" e “Album” no álbum/artista:
+# [4. Kid3-qt Script zsh]  ---> Corrige o "NA", “Album” e "Date" no álbum/artista:
 # - Criar script,
 # - No momento é realizado manualmente (20260826).
 #
+# [5. Agrupar as músicas por artista do álbum
+# Exemplo: diretório "Gilberto Gil" com o álbum "Gilberto Gil" e as músicas do álbum dentro do diretório do artista.
+#
+# - Criar script,
+# - No momento é realizado manualmente (20260906).
 
 # Define o diretório de destino desejado
 # DIRETORIO_ALVO="/Users/paulonogueirasilva/Downloads"
