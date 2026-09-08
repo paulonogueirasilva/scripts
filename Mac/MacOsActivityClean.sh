@@ -30,7 +30,7 @@ fi
 echo "[+] Iniciando limpeza segura da JetBrains..."
 if [ -d ~/Library/Logs/JetBrains ]; then
     echo "    -> Removendo logs de IDEs..."
-    rm -rf ~/Library/Logs/JetBrains/*
+    rm -rf ~/Library/Logs/JetBrains/* 2>/dev/null || true
 fi
 
 # Limpa caches gerais da JetBrains que o Homebrew não remove sozinho
@@ -91,8 +91,17 @@ fi
 # --- Seção 8: Execução do Mole (Limpeza & Otimização Automática) ---
 if command -v mole &> /dev/null; then
     echo "[+] Executando limpeza e otimização via Mole..."
-    mole clean --all >/dev/null 2>&1
-    mole optimize >/dev/null 2>&1
+    sudo mole clean --all >/dev/null 2>&1
+    STATUS_CLEAN=$?
+    
+    sudo mole optimize >/dev/null 2>&1
+    STATUS_OPT=$?
+    
+    if [ $STATUS_CLEAN -eq 0 ] && [ $STATUS_OPT -eq 0 ]; then
+        echo "[✓] Executou mole com sucesso."
+    else
+        echo "[!] Ocorreu uma falha na execução do Mole (Exit code Clean: $STATUS_CLEAN, Optimize: $STATUS_OPT)."
+    fi
 else
     echo "[!] Executável do Mole não foi encontrado no PATH."
 fi
