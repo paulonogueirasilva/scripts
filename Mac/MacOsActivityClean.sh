@@ -93,9 +93,12 @@ MOLE_BIN="/opt/homebrew/bin/mole"
 
 if [ -x "$MOLE_BIN" ]; then
     echo "[+] Executando limpeza e otimização via Mole..."
+    echo "[+] ........"
+    echo "[+] Aguarde!"
+    echo "[+] ........"
     
     # Executa usando o caminho absoluto liberado no sudoers
-    sudo "$MOLE_BIN" clean --all >/dev/null
+    sudo "$MOLE_BIN" clean >/dev/null
     STATUS_CLEAN=$?
     
     sudo "$MOLE_BIN" optimize >/dev/null
