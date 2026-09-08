@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 #
-# 20260906 - MacOsActivityClean.sh - Testado e funcional.
+# 20260908 - MacOsActivityClean.sh - Testado e funcional.
 #
 
 echo "--- Iniciando Faxina de Desenvolvimento (macOS Tahoe) ---"
@@ -91,8 +91,8 @@ fi
 # --- Seção 8: Execução do Mole (Limpeza & Otimização Automática) ---
 if command -v mole &> /dev/null; then
     echo "[+] Executando limpeza e otimização via Mole..."
-    mole clean --all --quiet 2>/dev/null
-    mole optimize --quiet 2>/dev/null
+    mole clean --all >/dev/null 2>&1
+    mole optimize >/dev/null 2>&1
 else
     echo "[!] Executável do Mole não foi encontrado no PATH."
 fi
@@ -108,5 +108,5 @@ df -h /
 if [ $STATUS_FAXINA -eq 0 ]; then
     say "Sucesso na execução"
 else
-    say "Erro! Erro! Erro! Script mal sucedido!"
+    say "Erro! Erro! Erro!"
 fi
