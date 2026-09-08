@@ -88,31 +88,6 @@ if [ -d "$WORKSPACE_DIR" ]; then
     find "$WORKSPACE_DIR" -name "*.trace.db" -type f -delete 2>/dev/null
 fi
 
-# --- Seção 8: Execução do Mole (Limpeza & Otimização Automática) ---
-MOLE_BIN="/opt/homebrew/bin/mole"
-
-if [ -x "$MOLE_BIN" ]; then
-    echo "[+] Executando limpeza e otimização via Mole..."
-    echo "[+] ........"
-    echo "[+] Aguarde!"
-    echo "[+] ........"
-    
-    # Executa usando o caminho absoluto liberado no sudoers
-    sudo "$MOLE_BIN" clean >/dev/null
-    STATUS_CLEAN=$?
-    
-    sudo "$MOLE_BIN" optimize >/dev/null
-    STATUS_OPT=$?
-    
-    if [ $STATUS_CLEAN -eq 0 ] && [ $STATUS_OPT -eq 0 ]; then
-        echo "[✓] Executou mole com sucesso."
-    else
-        echo "[!] Ocorreu uma falha na execução do Mole (Exit code Clean: $STATUS_CLEAN, Optimize: $STATUS_OPT)."
-    fi
-else
-    echo "[!] Executável do Mole não foi encontrado em $MOLE_BIN."
-fi
-
 STATUS_FAXINA=$?
 
 echo "--- Faxina Concluída! ---"
