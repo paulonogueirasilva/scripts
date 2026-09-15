@@ -44,6 +44,8 @@ find "$LOCAL_DIR" -name ".DS_Store" -type f -delete 2>/dev/null
 # EXECUÇÃO DO COMANDO UNIFICADO
 #
 # --delete-during \: para deletar arquivos durante a sincronização
+#  --drive-import-formats docx,xlsx,pptx,svg,csv \
+#  --drive-export-formats docx,xlsx,pptx,svg,csv \
 # --dry-run \: para simulação
 # --resync \: para a primeira sincronização ou possível resincronização
 # --resync-mode path1 \: para sincronizar a partir da pasta local
