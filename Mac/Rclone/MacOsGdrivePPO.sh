@@ -68,7 +68,6 @@ rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" \
   --drive-chunk-size 64M \
   --drive-import-formats docx,xlsx,pptx,svg,csv \
   --drive-export-formats docx,xlsx,pptx,svg,csv \
-  --resync-mode path1 \
   -P -v
 
 STATUS_SYNC=$?
