@@ -26,15 +26,23 @@ if pgrep -x "rclone" > /dev/null; then
   exit 1
 fi
 
-# 2. TRAVA DE CONFIRMAÇÃO (Apenas se o script for executado manualmente no terminal)
+# 2. TRAVA DE CONFIRMAÇÃO (Captura instantânea sem Enter)
 if [ -t 0 ]; then
   echo -n "Deseja iniciar o rclone Mandalas, Magia & Cia. <--> Local Mac? [y/n]: "
-  read -r resposta
+  
+  # Captura apenas 1 caractere (-n 1) sem aguardar newline
+#  read -r -n 1 resposta
+  read -r -n 1 -s resposta
+#  echo "" # Quebra de linha visual após a tecla ser pressionada
+
   if [[ ! "$resposta" =~ ^[Yy]$ ]]; then
     echo "Sincronização cancelada pelo usuário."
     exit 0
   fi
 fi
+
+# O script prossegue imediatamente ao pressionar 'y' ou 'Y'
+echo "Iniciando rclone..."
 
 # ===========================================
 # LIMPEZA PRÉVIA DE ARQUIVOS OCULTOS DO MACOS
