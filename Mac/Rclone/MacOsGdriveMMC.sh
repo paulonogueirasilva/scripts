@@ -26,14 +26,13 @@ if pgrep -x "rclone" > /dev/null; then
   exit 1
 fi
 
-# 2. TRAVA DE CONFIRMAÇÃO (Captura instantânea sem Enter)
+# 2. TRAVA DE CONFIRMAÇÃO (Sintaxe Nativa Zsh)
 if [ -t 0 ]; then
   echo -n "Deseja iniciar o rclone Mandalas, Magia & Cia. <--> Local Mac? [y/n]: "
   
-  # Captura apenas 1 caractere (-n 1) sem aguardar newline
-#  read -r -n 1 resposta
-  read -r -n 1 -s resposta
-#  echo "" # Quebra de linha visual após a tecla ser pressionada
+  # Zsh: -k 1 (lê 1 caractere), -r (raw input)
+  read -r -k 1 resposta
+  echo "" # Quebra de linha visual necessária após a captura do caractere
 
   if [[ ! "$resposta" =~ ^[Yy]$ ]]; then
     echo "Sincronização cancelada pelo usuário."
