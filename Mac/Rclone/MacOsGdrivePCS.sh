@@ -26,10 +26,14 @@ if pgrep -x "rclone" > /dev/null; then
   exit 1
 fi
 
-# 2. TRAVA DE CONFIRMAÇÃO (Apenas se o script for executado manualmente no terminal)
+# 2. TRAVA DE CONFIRMAÇÃO (Sintaxe Nativa Zsh)
 if [ -t 0 ]; then
-  echo -n "Deseja iniciar o rclone Podcast Saravando <--> Local Mac agora? [y/N]: "
-  read -r resposta
+  echo -n "Deseja iniciar o rclone Podcast Saravando <--> Local Mac? [y/n]: "
+  
+  # Zsh: -k 1 (lê 1 caractere), -r (raw input)
+  read -r -k 1 resposta
+  echo "" # Quebra de linha visual necessária após a captura do caractere
+
   if [[ ! "$resposta" =~ ^[Yy]$ ]]; then
     echo "Sincronização cancelada pelo usuário."
     exit 0
