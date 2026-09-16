@@ -46,6 +46,7 @@ find "$LOCAL_DIR" -name ".DS_Store" -type f -delete 2>/dev/null
 # --delete-during \: para deletar arquivos durante a sincronização
 # --drive-import-formats docx,xlsx,pptx,svg,csv \
 # --drive-export-formats docx,xlsx,pptx,svg,csv \
+# --drive-allow-import-name-change \
 # --dry-run \: para simulação
 # --resync \: para a primeira sincronização ou possível resincronização
 # --resync-mode path1 \: para sincronizar a partir da pasta local
@@ -68,6 +69,7 @@ rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" \
   --drive-chunk-size 64M \
   --drive-import-formats docx,xlsx,pptx,svg,csv \
   --drive-export-formats docx,xlsx,pptx,svg,csv \
+  --drive-allow-import-name-change \
   -P -v
 
 STATUS_SYNC=$?
