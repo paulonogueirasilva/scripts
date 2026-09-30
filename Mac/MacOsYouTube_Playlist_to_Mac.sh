@@ -69,13 +69,13 @@ echo -e "\nIniciando o download com a URL corrigida:\n$URL_CORRIGIDA\n"
 # Executa o yt-dlp mantendo a playlist unificada, contornando o SABR e garantindo saída M4A
 yt-dlp \
   --cookies-from-browser chrome \
-  --extractor-args "youtube:player_client=mweb,web" \
+  --extractor-args "youtube:player_client=tv_embedded,web_creator" \
   --sleep-interval 15 \
   --max-sleep-interval 21 \
   --audio-format m4a \
   --audio-quality 0 \
-  --convert-thumbnails jpg \
   --embed-thumbnail \
+  --convert-thumbnails jpg \
   --embed-metadata \
   --parse-metadata "%(playlist_channel,playlist_uploader,uploader,channel)s:%(album_artist)s" \
   --parse-metadata "playlist_title:%(album)s" \
