@@ -67,9 +67,10 @@ URL_CORRIGIDA=$(echo "$URL_ORIGINAL" | sed 's/music.youtube/www.youtube/g')
 echo -e "\nIniciando o download com a URL corrigida:\n$URL_CORRIGIDA\n"
 
 # Executa o seu comando yt-dlp atualizado com suporte a SABR e fallback de metadados
+# --extractor-args "youtube:player_client=android,web" \
 yt-dlp \
   --cookies-from-browser chrome \
-  --extractor-args "youtube:player_client=android,web" \
+  --extractor-args "youtube:player_client=mweb,web" \
   -f "ba[ext=m4a]/ba/b" \
   --sleep-interval 15 \
   --max-sleep-interval 21 \
