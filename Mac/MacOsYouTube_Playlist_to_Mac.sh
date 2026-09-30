@@ -66,8 +66,7 @@ URL_CORRIGIDA=$(echo "$URL_ORIGINAL" | sed 's/music.youtube/www.youtube/g')
 
 echo -e "\nIniciando o download com a URL corrigida:\n$URL_CORRIGIDA\n"
 
-# Executa o seu comando yt-dlp atualizado com suporte a SABR e fallback de metadados
-# --extractor-args "youtube:player_client=android,web" \
+# Executa o yt-dlp mantendo a playlist unificada, contornando o SABR e evitando 'NA'
 yt-dlp \
   --cookies-from-browser chrome \
   --extractor-args "youtube:player_client=mweb,web" \
@@ -76,7 +75,7 @@ yt-dlp \
   --max-sleep-interval 21 \
   --embed-thumbnail \
   --embed-metadata \
-  --parse-metadata "%(playlist_uploader,uploader)s:%(album_artist)s" \
+  --parse-metadata "%(playlist_channel,playlist_uploader,uploader,channel)s:%(album_artist)s" \
   --parse-metadata "playlist_title:%(album)s" \
   --parse-metadata "%(playlist_index)s:%(track_number)s" \
   --replace-in-metadata "album_artist" " - Topic" "" \
