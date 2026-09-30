@@ -66,12 +66,15 @@ URL_CORRIGIDA=$(echo "$URL_ORIGINAL" | sed 's/music.youtube/www.youtube/g')
 
 echo -e "\nIniciando o download com a URL corrigida:\n$URL_CORRIGIDA\n"
 
-# Executa o yt-dlp mantendo a playlist unificada, contornando o SABR e evitando 'NA'
+# Executa o yt-dlp mantendo a playlist unificada, contornando o SABR e garantindo saída M4A
 yt-dlp \
   --cookies-from-browser chrome \
   --extractor-args "youtube:player_client=mweb,web" \
   --sleep-interval 15 \
   --max-sleep-interval 21 \
+  --audio-format m4a \
+  --audio-quality 0 \
+  --convert-thumbnails jpg \
   --embed-thumbnail \
   --embed-metadata \
   --parse-metadata "%(playlist_channel,playlist_uploader,uploader,channel)s:%(album_artist)s" \
@@ -79,8 +82,9 @@ yt-dlp \
   --parse-metadata "%(playlist_index)s:%(track_number)s" \
   --replace-in-metadata "album_artist" " - Topic" "" \
   --replace-in-metadata "playlist_uploader" " - Topic" "" \
-  -f "ba[ext=m4a]/ba/b" \
+  -f "ba/bestaudio" \
   -o "%(album_artist)s - %(album)s/%(playlist_index)02d - %(title)s.%(ext)s" \
+  -x \
   "$URL_CORRIGIDA"
 
 # Verificar se o comando yt-dlp falhou
