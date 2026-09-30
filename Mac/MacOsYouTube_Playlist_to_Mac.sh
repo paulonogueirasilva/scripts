@@ -66,10 +66,10 @@ URL_CORRIGIDA=$(echo "$URL_ORIGINAL" | sed 's/music.youtube/www.youtube/g')
 
 echo -e "\nIniciando o download com a URL corrigida:\n$URL_CORRIGIDA\n"
 
-# Executa o yt-dlp sem travar cliente mweb, contornando o SABR e extraindo em M4A
+# Executa o yt-dlp sem avisos de clientes inválidos, burlando o SABR e gerando M4A
 yt-dlp \
   --cookies-from-browser chrome \
-  --extractor-args "youtube:player_client=android_creator,web" \
+  --extractor-args "youtube:player_client=android,web" \
   --sleep-interval 15 \
   --max-sleep-interval 21 \
   --audio-format m4a \
@@ -82,7 +82,7 @@ yt-dlp \
   --parse-metadata "%(playlist_index)s:%(track_number)s" \
   --replace-in-metadata "album_artist" " - Topic" "" \
   --replace-in-metadata "playlist_uploader" " - Topic" "" \
-  -f "ba/ba*/bestaudio" \
+  -f "ba/ba*/bestaudio/best" \
   -o "%(album_artist)s - %(album)s/%(playlist_index)02d - %(title)s.%(ext)s" \
   -x \
   "$URL_CORRIGIDA"
