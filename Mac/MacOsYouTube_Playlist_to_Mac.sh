@@ -66,18 +66,22 @@ URL_CORRIGIDA=$(echo "$URL_ORIGINAL" | sed 's/music.youtube/www.youtube/g')
 
 echo -e "\nIniciando o download com a URL corrigida:\n$URL_CORRIGIDA\n"
 
-# Executa o seu comando yt-dlp com a nova URL
-yt-dlp -f 'ba[ext=m4a]' \
---cookies-from-browser chrome \
---sleep-interval 15 \
---max-sleep-interval 21 \
---embed-thumbnail --embed-metadata \
---parse-metadata "playlist_uploader:%(album_artist)s" \
---parse-metadata "playlist_title:%(album)s" \
---parse-metadata "%(playlist_index)s:%(track_number)s" \
---replace-in-metadata "playlist_uploader" " - Topic" "" \
--o "%(album_artist)s - %(album)s/%(playlist_index)02d - %(title)s.%(ext)s" \
-"$URL_CORRIGIDA"
+# Executa o seu comando yt-dlp atualizado com suporte a SABR e fallback de metadados
+yt-dlp \
+  --cookies-from-browser chrome \
+  --extractor-args "youtube:player_client=android,web" \
+  -f "ba[ext=m4a]/ba/b" \
+  --sleep-interval 15 \
+  --max-sleep-interval 21 \
+  --embed-thumbnail \
+  --embed-metadata \
+  --parse-metadata "%(playlist_uploader,uploader)s:%(album_artist)s" \
+  --parse-metadata "playlist_title:%(album)s" \
+  --parse-metadata "%(playlist_index)s:%(track_number)s" \
+  --replace-in-metadata "album_artist" " - Topic" "" \
+  --replace-in-metadata "playlist_uploader" " - Topic" "" \
+  -o "%(album_artist)s - %(album)s/%(playlist_index)02d - %(title)s.%(ext)s" \
+  "$URL_CORRIGIDA"
 
 # Verificar se o comando yt-dlp falhou
 if [ $? -eq 0 ]; then
