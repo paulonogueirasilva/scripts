@@ -70,7 +70,6 @@ echo -e "\nIniciando o download com a URL corrigida:\n$URL_CORRIGIDA\n"
 yt-dlp \
   --cookies-from-browser chrome \
   --extractor-args "youtube:player_client=mweb,web" \
-  -f "ba[ext=m4a]/ba/b" \
   --sleep-interval 15 \
   --max-sleep-interval 21 \
   --embed-thumbnail \
@@ -80,6 +79,7 @@ yt-dlp \
   --parse-metadata "%(playlist_index)s:%(track_number)s" \
   --replace-in-metadata "album_artist" " - Topic" "" \
   --replace-in-metadata "playlist_uploader" " - Topic" "" \
+  -f "ba[ext=m4a]/ba/b" \
   -o "%(album_artist)s - %(album)s/%(playlist_index)02d - %(title)s.%(ext)s" \
   "$URL_CORRIGIDA"
 
