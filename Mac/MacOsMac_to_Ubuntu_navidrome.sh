@@ -36,13 +36,19 @@ if [ $STATUS_SYNC -eq 0 ]; then
   find "$ORIGEM" -name ".DS_Store" -type f -delete 2>/dev/null
   find "$ORIGEM" -mindepth 1 -type d -empty -delete
 
-  echo "--------------------------------"
-  echo "Forçando re-scan no Navidrome..."
-  echo "--------------------------------"
+  echo "------------------------------------------"
+  echo "Forçando re-scan no Navidrome (via ssh)..."
+  echo "------------------------------------------"
   # Dispara o scanner no contêiner do Navidrome no Ubuntu
   ssh "${DESTINO_USER}@${DESTINO_HOST}" "docker exec navidrome /app/navidrome scan"
+
+  say "Sucesso!"
+
 else
-  echo "---------------------------------------------"
-  echo "ERRO NA SINCRONIZAÇÃO: SyncMacToNavidrome.sh!"
-  echo "---------------------------------------------"
+  echo "-------------------------------------------------------"
+  echo "ERRO NA SINCRONIZAÇÃO: MacOsMac_to_Ubuntu_navidrome.sh!"
+  echo "-------------------------------------------------------"
+
+  say "Erro! Erro! Erro!"
+
 fi
