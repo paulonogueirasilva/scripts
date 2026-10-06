@@ -1,48 +1,45 @@
 #!/usr/bin/env zsh
-
 #
-# 20260825 - MacOsGdriveMMC.sh - Testado e funcional.
+# 20261006 - macOSGdriveMMC.sh
 #
-
 # ========================
 # CONFIGURAÇÃO DE CAMINHOS
 # ========================
 LOCAL_DIR="/Users/paulonogueirasilva/gdrive_mmc"
 REMOTE_DIR="gdrive_mmc:"
 FILTER_FILE="/Users/paulonogueirasilva/Documents/GitHub/Scripts/Mac/Filters/Terminal-Mac-Filters.txt"
-
+#
 # Diretórios de Controle e Log
 RCLONE_WORK_DIR="/Users/paulonogueirasilva/Documents/Rclone/Bisync"
-
+#
 echo "--------------------------------------"
 echo " INICIANDO RCLONE BISYNC"
 echo " Mandalas, Magia & Cia. <--> Local Mac"
 echo "--------------------------------------"
-
+#
 # 1. Evitar execuções sobrepostas (Crucial para o Bisync a cada 15 min)
 if pgrep -x "rclone" > /dev/null; then
   echo "Rclone já está em execução de Mandalas, Magia & Cia. <--> Local Mac"
   echo "Abortando esta rodada para evitar corrupção da base do Bisync."
   exit 1
 fi
-
+#
 # 2. TRAVA DE CONFIRMAÇÃO (Sintaxe Nativa Zsh)
 if [ -t 0 ]; then
   echo -n "Deseja iniciar o rclone Mandalas, Magia & Cia. <--> Local Mac? [y/n]: "
-  
+  #
   # Zsh: -k 1 (lê 1 caractere), -r (raw input)
   read -r -k 1 resposta
   echo "" # Quebra de linha visual necessária após a captura do caractere
-
+  #
   if [[ ! "$resposta" =~ ^[Yy]$ ]]; then
     echo "Sincronização cancelada pelo usuário."
     exit 0
   fi
 fi
-
+#
 # O script prossegue imediatamente ao pressionar 'y' ou 'Y'
 echo "Iniciando rclone..."
-
 # ===========================================
 # LIMPEZA PRÉVIA DE ARQUIVOS OCULTOS DO MACOS
 # ===========================================
@@ -78,24 +75,25 @@ rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" \
   --drive-export-formats docx,xlsx,pptx,svg,csv \
   --drive-allow-import-name-change \
   -P -v
-
+#
 STATUS_SYNC=$?
-
+#
 if [ $STATUS_SYNC -eq 0 ]; then
   chmod +x /usr/local/bin/*.sh(N) /usr/local/bin/*.py(N) 2>/dev/null
   echo "-------------------------------------"
   echo " SINCRONIZAÇÃO CONCLUÍDA COM SUCESSO!"
   echo "-------------------------------------"
+  say "Sucesso!"
 else
   echo "------------------------"
   echo " ERRO NA SINCRONIZAÇÃO!"
   echo "------------------------"
+  say "Erro! Erro! Erro!"
 fi
 #
 # Exibe a quantidade de espaço utilizado no Google Drive após a sincronização
 #
 rclone about "$REMOTE_DIR"
-
 #
 #Parâmetros utilizados no rclone:
 #

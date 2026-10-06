@@ -1,18 +1,16 @@
 #!/usr/bin/env zsh
-
 #
-# 20260825 - MacOsSystemAdm.sh - Testado e funcional.
+# 20261006 - macOSSystemAdm.sh
 #
-
 # Cores
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m'
-
+#
 echo -e "${BLUE}=== Auditoria Pro: MacBook Pro M2 - $(date +%d/%m/%Y) ===${NC}\n"
-
+#
 # [1/5] VERSÕES (JAVA/DESIGN)
 echo -e "${YELLOW}[1/5] Versões e Atualizações${NC}"
 if command -v java &>/dev/null; then
@@ -25,22 +23,22 @@ if command -v java &>/dev/null; then
         echo "OpenJDK Remoto: Não foi possível obter a versão atual."
     fi
 fi
-
+#
 # [2/5] HOMEBREW
 echo -e "\n${YELLOW}[2/5] Gestão de Pacotes (Homebrew)${NC}"
 OUTDATED=$(brew outdated --quiet | wc -l | xargs)
 [ "$OUTDATED" -gt 0 ] && echo -e "${RED}Existem $OUTDATED pacotes pendentes.${NC}" || echo -e "${GREEN}Tudo atualizado.${NC}"
-
+#
 # [3/5] DIRETÓRIOS E BACKUP
 echo -e "\n${YELLOW}[3/5] Status dos Diretórios de Trabalho/Backup${NC}"
 PATHS=("$HOME/Documents/Postman" "$HOME/Documents/GitHub")
 for p in "${PATHS[@]}"; do
     [ -d "$p" ] && echo -e "${GREEN}[OK]${NC} $p ($(du -sh "$p" | awk '{print $1}'))" || echo -e "${RED}[ERRO]${NC} $p ausente."
 done
-
+#
 # [4/5] STATUS DE REDE E ACESSO REMOTO
 echo -e "\n${YELLOW}[4/5] Conectividade e Acesso Remoto${NC}"
-
+#
 # Tailscale
 if command -v tailscale &>/dev/null; then
     TS_STATUS=$(tailscale status --peers=false 2>/dev/null)
@@ -52,7 +50,7 @@ if command -v tailscale &>/dev/null; then
 else
     echo "Tailscale CLI não encontrado."
 fi
-
+#
 # NoMachine (nxserver)
 if [ -f "/usr/local/bin/nxserver" ]; then
     NX_STATUS=$(/usr/local/bin/nxserver --status | grep "is running" | wc -l)
@@ -62,7 +60,7 @@ if [ -f "/usr/local/bin/nxserver" ]; then
         echo -e "${YELLOW}[STOPPED]${NC} NoMachine Server não está rodando."
     fi
 fi
-
+#
 # [5/5] STATUS DE REPOSITÓRIOS GIT (DETALHADO)
 echo -e "\n${YELLOW}[5/5] Status de Repositórios Git${NC}"
 find "$HOME/Documents/GitHub" -maxdepth 2 -name ".git" -type d 2>/dev/null | while read -r repo; do
@@ -82,7 +80,15 @@ find "$HOME/Documents/GitHub" -maxdepth 2 -name ".git" -type d 2>/dev/null | whi
         echo -e "${GREEN}[LIMPO]${NC} $REPO_NAME"
     fi
 done
-
+#
 echo -e "\n${BLUE}=== Verificação Concluída ===${NC}"
 echo "----------------------------------------------"
 df -h /
+#
+#Verificar se o comando anterior falhou
+if [ $? -eq 0 ]; then
+  echo "--- Limpeza concluída! ---"
+  say "Sucesso!"
+  else
+    say "Erro! Erro! Erro!"
+fi

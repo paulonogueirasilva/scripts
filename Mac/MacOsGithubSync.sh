@@ -1,20 +1,20 @@
 #!/usr/bin/env zsh
-
-# 20260903 - MacOsGithubSync.sh - Refatorado com verificações SSH e branch dinâmica
-
+#
+# 20261006 - macOSGithubSync.sh - Refatorado com verificações SSH e branch dinâmica
+#
 BASE_DIR="$HOME/Documents/GitHub"
 HAS_ERROR=0
-
+#
 echo "--- Iniciando Sincronização Git ---"
 echo "Data: $(date)"
 echo "-----------------------------------"
-
+#
 if [ ! -d "$BASE_DIR" ]; then
     echo "Erro: Diretório $BASE_DIR não encontrado."
     say "Erro! Diretório não encontrado!"
     exit 1
 fi
-
+#
 for repo in "$BASE_DIR"/*/; do
     if [ -d "${repo}.git" ]; then
         repo_name=$(basename "$repo")
@@ -25,7 +25,7 @@ for repo in "$BASE_DIR"/*/; do
 
         if [ -z "$current_branch" ]; then
             echo "⚠️ Repositório sem branch ativa configurada. Pulando..."
-            echo "-----------------------------------"
+            echo "------------------------------------------------------"
             continue
         fi
 
@@ -54,12 +54,12 @@ for repo in "$BASE_DIR"/*/; do
         echo "-----------------------------------"
     fi
 done
-
+#
 echo "Sincronização concluída!"
-
+#
 # Avaliação final de sucesso
 if [ $HAS_ERROR -eq 0 ]; then
-    say "Sucesso na execução"
+    say "Sucesso!"
 else
-    say "Erro! Erro! Erro! Script mal sucedido!"
+    say "Erro! Erro! Erro!"
 fi

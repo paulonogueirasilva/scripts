@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
-
 #
-# 20260825 - MacOsYouTube_Video_to_Mac.sh - Testado e funcional.
+# 20261006 - macOSYouTube_Video_to_Mac.sh
 #
 # [1. Terminal Mac]  ---> Conectar.
 #
@@ -17,7 +16,7 @@
 # Define o diretório de destino desejado
 # DIRETORIO_ALVO="/Users/paulonogueirasilva/Downloads"
 DIRETORIO_ALVO="/Users/paulonogueirasilva/Movies"
-
+#
 # Verifica se já está no diretório correto. Se não estiver, entra nele.
 if [ "$PWD" != "$DIRETORIO_ALVO" ]; then
     echo "Movendo para o diretório correto: $DIRETORIO_ALVO"
@@ -25,12 +24,12 @@ if [ "$PWD" != "$DIRETORIO_ALVO" ]; then
 else
     echo "Você já está no diretório correto: $DIRETORIO_ALVO"
 fi
-
+#
 # Solicita a URL do vídeo do YouTube
 read -r "URL_VIDEO?Cole a URL do vídeo do YouTube: "
-
+#
 print "\nAguardando o intervalo de segurança e iniciando o download do vídeo...\n"
-
+#
 # Executa o yt-dlp para baixar o VÍDEO COMPLETO (Vídeo + Áudio)
 # Junta o melhor vídeo e melhor áudio preferencialmente em MP4/M4A
 yt-dlp -f 'bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b' \
@@ -42,10 +41,12 @@ yt-dlp -f 'bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b' \
   --sub-langs "pt,en" \
   -o "%(uploader)s - %(title)s.%(ext)s" \
   "$URL_VIDEO"
-
+#
 # Validação do status do download
 if [ $? -eq 0 ]; then
     print "\nDownload do vídeo concluído com sucesso!"
+    say "Sucesso!"
 else
     print "\nOcorreu um erro durante o download do vídeo."
+    say "Erro! Erro! Erro!"
 fi

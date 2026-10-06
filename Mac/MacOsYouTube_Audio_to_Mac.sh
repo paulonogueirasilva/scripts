@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
-
 #
-# 20260825 - MacOsYouTube_Audio_to_Mac.sh - Testado e funcional.
+# 20261006 - macOSYouTube_Audio_to_Mac.sh
 #
 # [1. Terminal Mac]  ---> Conectar.
 #
@@ -17,7 +16,7 @@
 # Define o diretório de destino desejado
 # DIRETORIO_ALVO="/Users/paulonogueirasilva/Downloads"
 DIRETORIO_ALVO="/Users/paulonogueirasilva/Music"
-
+#
 # Verifica se já está no diretório correto. Se não estiver, entra nele.
 if [ "$PWD" != "$DIRETORIO_ALVO" ]; then
     echo "Movendo para o diretório correto: $DIRETORIO_ALVO"
@@ -25,12 +24,12 @@ if [ "$PWD" != "$DIRETORIO_ALVO" ]; then
 else
     echo "Você já está no diretório correto: $DIRETORIO_ALVO"
 fi
-
+#
 # Solicita a URL do vídeo do YouTube (usando read/print nativos do Zsh)
 read -r "URL_VIDEO?Cole a URL do vídeo do YouTube: "
-
+#
 print "\nAguardando o intervalo de segurança e iniciando o download...\n"
-
+#
 # Executa o yt-dlp usando os cookies do navegador para evitar o bloqueio (HTTP 429/bot)
 # Altere de 'chrome' para 'safari', 'firefox' ou 'brave' se utilizar outro navegador.
 yt-dlp -f 'ba[ext=m4a]/ba' \
@@ -42,10 +41,12 @@ yt-dlp -f 'ba[ext=m4a]/ba' \
   --embed-metadata \
   -o "%(uploader)s - %(title)s.%(ext)s" \
   "$URL_VIDEO"
-
+#
 # O '$?' verifica se o yt-dlp terminou com sucesso (código 0) antes de exibir a mensagem
 if [ $? -eq 0 ]; then
     print "\nDownload do áudio concluído com sucesso!"
+    say "Sucesso!"
 else
     print "\nOcorreu um erro durante o download do áudio."
+    say "Erro! Erro! Erro!"
 fi

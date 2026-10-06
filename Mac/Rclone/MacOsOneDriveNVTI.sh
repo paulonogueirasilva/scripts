@@ -1,31 +1,29 @@
 #!/usr/bin/env zsh
-
 #
-# 20260825 - MacOsOneDriveNVTI.sh - Testado e funcional.
+# 20261006 - macOSOneDriveNVTI.sh
 #
-
 # ========================
 # CONFIGURAÇÃO DE CAMINHOS
 # ========================
 LOCAL_DIR="/Users/paulonogueirasilva/onedrive_nvti"
 REMOTE_DIR="onedrive_nvti:"
 FILTER_FILE="/Users/paulonogueirasilva/Documents/GitHub/Scripts/Mac/Filters/Terminal-Mac-Filters.txt"
-
+#
 # Diretórios de Controle e Log
 RCLONE_WORK_DIR="/Users/paulonogueirasilva/Documents/Rclone/Bisync"
-
+#
 echo "------------------------"
 echo " INICIANDO RCLONE BISYNC"
 echo " NVTI <--> Local Mac"
 echo "------------------------"
-
+#
 # 1. Evitar execuções sobrepostas (Crucial para o Bisync a cada 15 min)
 if pgrep -x "rclone" > /dev/null; then
   echo "Rclone já está em execução de NVTI <--> Local Mac"
   echo "Abortando esta rodada para evitar corrupção da base do Bisync."
   exit 1
 fi
-
+#
 # 2. TRAVA DE CONFIRMAÇÃO (Sintaxe Nativa Zsh)
 if [ -t 0 ]; then
   echo -n "Deseja iniciar o rclone NVTI <--> Local Mac? [y/n]: "
@@ -39,7 +37,6 @@ if [ -t 0 ]; then
     exit 0
   fi
 fi
-
 # ===========================================
 # LIMPEZA PRÉVIA DE ARQUIVOS OCULTOS DO MACOS
 # ===========================================
@@ -48,8 +45,8 @@ find "$LOCAL_DIR" -name ".DS_Store" -type f -delete 2>/dev/null
 # EXECUÇÃO DO COMANDO UNIFICADO
 #
 # --delete-during \: para deletar arquivos durante a sincronização
-#  --drive-import-formats docx,xlsx,pptx,svg,csv \
-#  --drive-export-formats docx,xlsx,pptx,svg,csv \
+# --drive-import-formats docx,xlsx,pptx,svg,csv \
+# --drive-export-formats docx,xlsx,pptx,svg,csv \
 # --dry-run \: para simulação
 # --resync \: para a primeira sincronização ou possível resincronização
 # --resync-mode path1 \: para sincronizar a partir da pasta local
@@ -71,24 +68,25 @@ rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" \
   --checkers 4 \
   --drive-chunk-size 64M \
   -P -v
-
+#
 STATUS_SYNC=$?
-
+#
 if [ $STATUS_SYNC -eq 0 ]; then
   chmod +x /usr/local/bin/*.sh(N) /usr/local/bin/*.py(N) 2>/dev/null
   echo "-------------------------------------"
   echo " SINCRONIZAÇÃO CONCLUÍDA COM SUCESSO!"
   echo "-------------------------------------"
+  say "Sucesso!"
 else
   echo "------------------------"
   echo " ERRO NA SINCRONIZAÇÃO!"
   echo "------------------------"
+  say "Erro! Erro! Erro!"
 fi
 #
 # Exibe a quantidade de espaço utilizado no OneDrive após a sincronização
 #
 rclone about "$REMOTE_DIR"
-
 #
 #Parâmetros utilizados no rclone:
 #

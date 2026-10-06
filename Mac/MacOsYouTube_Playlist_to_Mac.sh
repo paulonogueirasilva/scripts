@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
-
 #
-# 20260825 - MacOsYouTube_Playlist_to_Mac.sh - Testado e funcional.
+# 20261006 - macOSYouTube_Playlist_to_Mac.sh
 #
 echo -e "\nPROCEDIMENTO DE USO\n"
 # [1. Terminal Mac]  ---> Conectar.
@@ -29,25 +28,25 @@ echo -e "\n[5. Agrupar as músicas por artista do álbum] ---> Realizado manualm
 #
 # - Criar script,
 # - No momento é realizado manualmente (20260906).
-
+#
 # 2. TRAVA DE CONFIRMAÇÃO (Sintaxe Nativa Zsh)
 if [ -t 0 ]; then
   echo -n "Deseja iniciar o MacOsYouTube_Playlist_to_Mac? [y/n]: "
-  
+  #
   # Zsh: -k 1 (lê 1 caractere), -r (raw input)
   read -r -k 1 resposta
   echo "" # Quebra de linha visual necessária após a captura do caractere
-
+  #
   if [[ ! "$resposta" =~ ^[Yy]$ ]]; then
     echo "Baixa da lista de reprodução cancelada pelo usuário."
     exit 0
   fi
 fi
-
+#
 # Define o diretório de destino desejado
 # DIRETORIO_ALVO="/Users/paulonogueirasilva/Downloads"
 DIRETORIO_ALVO="/Users/paulonogueirasilva/Music/Ubuntu/navidrome"
-
+#
 # Verifica se já está no diretório correto. Se não estiver, entra nele.
 if [ "$PWD" != "$DIRETORIO_ALVO" ]; then
     echo "Movendo para o diretório correto: $DIRETORIO_ALVO"
@@ -55,17 +54,17 @@ if [ "$PWD" != "$DIRETORIO_ALVO" ]; then
 else
     echo "Você já está no diretório correto: $DIRETORIO_ALVO"
 fi
-
+#
 # Solicita a URL do YouTube Music
 # echo -n "Cole a URL do YouTube Music: "
 # read -r URL_ORIGINAL
 read -r "URL_ORIGINAL?Cole a URL do YouTube Music: "
-
+#
 # Substitui 'music.youtube' por 'www.youtube'
 URL_CORRIGIDA=$(echo "$URL_ORIGINAL" | sed 's/music.youtube/www.youtube/g')
-
+#
 echo -e "\nIniciando o download com a URL corrigida:\n$URL_CORRIGIDA\n"
-
+#
 # Executa o yt-dlp sem avisos de clientes inválidos, burlando o SABR e gerando M4A
 yt-dlp \
   --cookies-from-browser chrome \
@@ -86,12 +85,12 @@ yt-dlp \
   -o "%(album_artist)s - %(album)s/%(playlist_index)02d - %(title)s.%(ext)s" \
   -x \
   "$URL_CORRIGIDA"
-
+#
 # Verificar se o comando yt-dlp falhou
 if [ $? -eq 0 ]; then
   say "Sucesso!"
 else
   say "Erro! Erro! Erro!"
 fi
-
+#
 echo -e "\nTransfira para o Ubuntu navidrome com MacOsMac_to_Ubuntu_navidrome(.sh)...\n"
