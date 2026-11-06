@@ -14,7 +14,6 @@
 # - Informa URL
 #
 # Define o diretório de destino desejado
-# DIRETORIO_ALVO="/Users/paulonogueirasilva/Downloads"
 DIRETORIO_ALVO="/Users/paulonogueirasilva/Movies"
 #
 # Verifica se já está no diretório correto. Se não estiver, entra nele.
@@ -30,23 +29,25 @@ read -r "URL_VIDEO?Cole a URL do vídeo do YouTube: "
 #
 print "\nAguardando o intervalo de segurança e iniciando o download do vídeo...\n"
 #
-# Executa o yt-dlp para baixar o VÍDEO COMPLETO (Vídeo + Áudio)
-# Junta o melhor vídeo e melhor áudio preferencialmente em MP4/M4A
-yt-dlp -f 'bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b' \
+# Executa o yt-dlp forçando a conversão compatível com QuickTime (H.264 + AAC)
+# yt-dlp -f 'bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b' \
+yt-dlp -f 'bv*+ba/b' \
   --cookies-from-browser chrome \
   --sleep-interval 15 --max-sleep-interval 21 \
   --embed-thumbnail \
   --embed-metadata \
   --embed-subs \
   --sub-langs "pt,en" \
+  --merge-output-format mp4 \
+  --postprocessor-args "ffmpeg:-c:v libx264 -crf 20 -preset medium -c:a aac -b:a 192k" \
   -o "%(uploader)s - %(title)s.%(ext)s" \
   "$URL_VIDEO"
 #
 # Validação do status do download
 if [ $? -eq 0 ]; then
-    print "\nDownload do vídeo concluído com sucesso!"
+    print "\nDownload e conversão do vídeo concluídos com sucesso!"
     say "Sucesso!"
 else
-    print "\nOcorreu um erro durante o download do vídeo."
+    print "\nOcorreu um erro durante o download ou pós-processamento."
     say "Erro! Erro! Erro!"
 fi
