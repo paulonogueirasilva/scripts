@@ -31,6 +31,7 @@ print "\nAguardando o intervalo de segurança e iniciando o download do vídeo..
 #
 # Executa o yt-dlp forçando a conversão compatível com QuickTime (H.264 + AAC)
 # yt-dlp -f 'bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b' \
+#   --postprocessor-args "ffmpeg:-c:v libx264 -crf 20 -preset medium -c:a aac -b:a 192k" \
 yt-dlp -f 'bv*+ba/b' \
   --cookies-from-browser chrome \
   --sleep-interval 15 --max-sleep-interval 21 \
@@ -39,7 +40,6 @@ yt-dlp -f 'bv*+ba/b' \
   --embed-subs \
   --sub-langs "pt,en" \
   --merge-output-format mp4 \
-  --postprocessor-args "ffmpeg:-c:v libx264 -crf 20 -preset medium -c:a aac -b:a 192k" \
   -o "%(uploader)s - %(title)s.%(ext)s" \
   "$URL_VIDEO"
 #
